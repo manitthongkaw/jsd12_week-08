@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Castle from "./components/01_Castle";
+import FetchPoke from "./examples/async/FetchPoke";
 
 export default function App() {
 
@@ -8,6 +9,7 @@ export default function App() {
   const [answer, setAnswer] = useState("");
   const handleQuestion = (event) => setQuestion(event.target.value);
   const handleAnswer = (event) => setAnswer(event.target.value);
+  //const handleAnswer = (event) => event && event.target ? setAnswer(event.target.value) : setAnswer(event);
 
   return (
     <div className="pt-10 gap-4 flex flex-col justify-center items-center min-h-screen bg-gray-800 text-white">
@@ -20,8 +22,15 @@ export default function App() {
         placeholder="Type your message here..."
       />
 
-      <p className="text-green-300 text-center">Reply from Secret Room:<br/>
-        <span className="text-blue-300">{answer ? answer : "Waiting for a secret room message..."}</span></p>
+      <p className="text-green-300 text-center">Reply from Secret Room:</p>
+      {
+        answer?.includes("ฉันจะไปกับนาย")
+        ? <FetchPoke />
+        : answer
+        || "Waiting for a inside message..."
+      }
+      {console.log(question)}
+      {console.log(answer)}
 
       <Castle question={question} answer={answer} handleAnswer={handleAnswer} />
     </div>
