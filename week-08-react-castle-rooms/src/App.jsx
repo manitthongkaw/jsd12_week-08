@@ -9,7 +9,6 @@ export default function App() {
   const [answer, setAnswer] = useState("");
   const handleQuestion = (event) => setQuestion(event.target.value);
   const handleAnswer = (event) => setAnswer(event.target.value);
-  //const handleAnswer = (event) => event && event.target ? setAnswer(event.target.value) : setAnswer(event);
 
   return (
     <div className="pt-10 gap-4 flex flex-col justify-center items-center min-h-screen bg-gray-800 text-white">
