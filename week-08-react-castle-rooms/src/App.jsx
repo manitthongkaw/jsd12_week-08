@@ -1,14 +1,10 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { MessageContext } from "./contexts/messageContext/messageContext";
 import Castle from "./components/01_Castle";
-import FetchPoke from "./examples/async/FetchPoke";
 
 export default function App() {
 
-  // State Varible
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
-  const handleQuestion = (event) => setQuestion(event.target.value);
-  const handleAnswer = (event) => setAnswer(event.target.value);
+  const {question, answer, handleQuestion} = useContext(MessageContext);
 
   return (
     <div className="pt-10 gap-4 flex flex-col justify-center items-center min-h-screen bg-gray-800 text-white">
@@ -21,17 +17,10 @@ export default function App() {
         placeholder="Type your message here..."
       />
 
-      <p className="text-green-300 text-center">Reply from Secret Room:</p>
-      {
-        answer?.includes("ฉันจะไปกับนาย")
-        ? <FetchPoke />
-        : answer
-        || "Waiting for a inside message..."
-      }
-      {console.log(question)}
-      {console.log(answer)}
+      <p className="text-green-300 text-center">Reply from Secret Room:<br/>
+        <span className="text-yellow-300">{answer ? answer : "Waiting for a outside message..."}</span></p>
 
-      <Castle question={question} answer={answer} handleAnswer={handleAnswer} />
+      <Castle />
     </div>
   );
 }
