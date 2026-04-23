@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Castle from "./components/01_Castle";
-import FetchPoke from "./examples/async/FetchPoke";
 
 export default function App() {
 
@@ -21,15 +20,8 @@ export default function App() {
         placeholder="Type your message here..."
       />
 
-      <p className="text-green-300 text-center">Reply from Secret Room:</p>
-      {
-        answer?.includes("ฉันจะไปกับนาย")
-        ? <FetchPoke />
-        : answer
-        || "Waiting for a inside message..."
-      }
-      {console.log(question)}
-      {console.log(answer)}
+      <p className="text-green-300 text-center">Reply from Secret Room:<br/>
+        <span className="text-yellow-300">{answer ? answer : "Waiting for a inside message..."}</span></p>
 
       <Castle question={question} answer={answer} handleAnswer={handleAnswer} />
     </div>

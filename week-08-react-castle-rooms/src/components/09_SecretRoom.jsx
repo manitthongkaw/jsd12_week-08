@@ -18,10 +18,8 @@ export default function SecretRoom({question, answer, handleAnswer}) {
           placeholder="Type your message here..."
         />
       }
-      <p className="text-green-300 text-center">Message from inside:</p>
-      {question && !question.includes("ฉันเลือกนาย") && answer}
-      {question?.includes("ฉันเลือกนาย") && <FetchPoke />}
-      {question?.includes("ฉันเลือกนาย") && <button className="text-sky-700 hover:text-blue-700 px-4 py-2 rounded-lg bg-white" value="ฉันจะไปกับนาย" onClick={handleAnswer}>ฉันจะไปกับนาย</button>}
+      <p className="text-green-300 text-center">Message from inside:<br/>
+        <span className="text-yellow-300">{answer ? answer : "Waiting for a inside message..."}</span></p>
     </div>
   );
 }
