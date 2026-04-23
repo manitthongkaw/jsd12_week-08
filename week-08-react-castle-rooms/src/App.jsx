@@ -1,26 +1,28 @@
 import { useContext } from "react";
 import { MessageContext } from "./contexts/messageContext/messageContext";
-import Castle from "./components/01_Castle";
+import Nav from "./components/layout/nav";
+import Home from "./pages/Home";
+import CastleRooms from "./pages/CastleRooms";
+import Counter from "./pages/Counter";
+import Toggle from "./pages/Toggle";
+import Form from "./pages/Form";
 
 export default function App() {
 
-  const {question, answer, handleQuestion} = useContext(MessageContext);
+  const {navRoomsActive, navCounterActive, navToggleActive, navFormActive} = useContext(MessageContext);
 
   return (
-    <div className="pt-10 gap-4 flex flex-col justify-center items-center min-h-screen bg-gray-800 text-white">
-      <p className="text-purple-300 text-center">Message for JSD12:<br/>
-        <span className="text-yellow-300">{question ? question : "Waiting for a jsd12 message..."}</span></p>
-      <textarea
-        value={question}
-        onChange={handleQuestion}
-        className="bg-white text-black rounded px-2 py-1"
-        placeholder="Type your message here..."
-      />
-
-      <p className="text-green-300 text-center">Reply from Secret Room:<br/>
-        <span className="text-yellow-300">{answer ? answer : "Waiting for a outside message..."}</span></p>
-
-      <Castle />
+    <div className="flex flex-col justify-start items-center gap-4 min-h-dvh pt-10 bg-slate-800">
+      <Nav />
+      <div className="w-full text-white text-center">
+        {
+          navRoomsActive ? <CastleRooms /> :
+          navCounterActive ? <Counter /> :
+          navToggleActive ? <Toggle /> :
+          navFormActive ? <Form /> :
+          <Home />
+        }
+      </div>
     </div>
   );
 }
